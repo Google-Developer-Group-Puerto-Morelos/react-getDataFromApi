@@ -1,27 +1,35 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, Spin } from "antd";
-
+import { Row, Col, Spin, Input, Button } from "antd";
+import { Container, SubContainer, MainButton } from "../../Styled/index";
 import { getData } from "../../Services/index";
 
-import StateCard from "../Card/index";
+import StateCard from "../Card/";
+
 function Home() {
   const [data, setData] = useState(null);
   const [state, selectState] = useState("Quintana Roo");
-
   const [pageSize, changePageSize] = useState(10);
+  const [search, setSearch] = useState(false);
 
-  useEffect(() => {
-    getData(pageSize, state).then((response) => {
+  const updateData = () => {
+    return getData(pageSize, state).then((response) => {
       let dataRetrieved = response.results;
       console.log(dataRetrieved);
       setData(dataRetrieved);
-      selectState("Quintana Roo");
-      changePageSize(10);
     });
-  }, []);
+  };
+
+  useEffect(() => {
+    updateData();
+  }, [data]);
 
   return (
-    <div style={{ margin: 100 }}>
+    <Container>
+      <Input
+        placeholder="Estado"
+        onChange={(e) => selectState(e.target.value)}
+      />
+      <Button onClick={() => updateData()}>Search</Button>
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
         {!data ? (
           <Spin />
@@ -35,7 +43,7 @@ function Home() {
           })
         )}
       </Row>
-    </div>
+    </Container>
   );
 }
 

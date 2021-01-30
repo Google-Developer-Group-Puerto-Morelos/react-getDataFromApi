@@ -11,8 +11,8 @@ function StateCard({ data }) {
         style={{ width: 300 }}
       >
         <p>{data.state}</p>
-        <p>{data.cityid}</p>
-        <p>{data.lastreporttime}</p>
+        <p>{data.latitude}</p>
+        <p>{data.longitude}</p>
         <p>{data.tempc}</p>
       </Card>
     </div>
