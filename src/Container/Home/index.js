@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col, Spin, Input, Button } from "antd";
 import { Container, SubContainer, MainButton } from "../../Styled/index";
-import { getData } from "../../Services/index";
+import { getData } from "../../Services";
+// import logo from './assets/svg/vercel.svg'
+import Icon from '../../assets/svg/logo'
 
-import StateCard from "../Card/";
+import StateCard from "../../Components/Card";
 
 function Home() {
   const [data, setData] = useState(null);
@@ -25,6 +27,8 @@ function Home() {
 
   return (
     <Container>
+            {/* <img src={logo} style={{height:200,width:200}}/> */}
+            <Icon colorSvg={'red'}/>
       <Input
         placeholder="Estado"
         onChange={(e) => selectState(e.target.value)}
